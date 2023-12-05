@@ -2,12 +2,8 @@ import numpy as np
 import random
 import cv2
 
+
 def salt_and_pepper_noise(X, salt_prob, pepper_prob):
-    """
-    Add salt and pepper noise to 2D image data.
-    salt_prob: Probability of adding salt (white) noise.
-    pepper_prob: Probability of adding pepper (black) noise.
-    """
     noisy_images = np.copy(X)
     num_images, num_rows, num_cols = X.shape
 
@@ -18,9 +14,10 @@ def salt_and_pepper_noise(X, salt_prob, pepper_prob):
                 if rand < salt_prob:
                     noisy_images[i, row, col] = 255  # Salt noise
                 elif rand < salt_prob + pepper_prob:
-                    noisy_images[i, row, col] = 0    # Pepper noise
+                    noisy_images[i, row, col] = 0  # Pepper noise
 
     return noisy_images
+
 
 def add_noise(X_train, X_test, noise_type, noise_factor):
     if noise_type.lower() == "gaussian":
@@ -109,7 +106,3 @@ def add_noise(X_train, X_test, noise_type, noise_factor):
         x_train_random = x_train_random / 255
         x_test_random = x_test_random / 255
         return x_train_random, x_test_random
-
-
-
-
